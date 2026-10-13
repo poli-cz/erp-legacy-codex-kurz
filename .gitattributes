@@ -1,0 +1,12 @@
+# Konce řádků: v repozitáři LF, na Windows je Git for Windows (core.autocrlf=true) převede na CRLF.
+* text=auto
+
+*.bat     text eol=crlf
+*.sh      text eol=lf
+
+# Golden data ze starého systému: beze změny bajtů (oddělovač ;, desetinná čárka).
+golden/*.csv -text diff
+
+# Soubor uložený ve Windows-1250 s CRLF. Git ho nesmí normalizovat (-text = žádná konverze konců
+# řádků), diff je přesto textový. Atribut encoding čte jen gitk a git gui.
+src/Erp.Payroll/StareKonstanty.cs -text diff encoding=windows-1250

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Jen Windows. Není v Erp.slnx, otevírá se přes Erp.Windows.slnx. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Erp.WinForms</RootNamespace>
+    <!-- Dovolí přeložit (ne spustit) i na macOS a Linuxu, např. v CI. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Erp.Framework\Erp.Framework.csproj" />
+    <ProjectReference Include="..\..\src\Erp.Payroll\Erp.Payroll.csproj" />
+    <ProjectReference Include="..\..\src\Erp.Vat\Erp.Vat.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Erp.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Framework\Erp.Framework.csproj" />
+    <ProjectReference Include="..\Erp.Payroll\Erp.Payroll.csproj" />
+    <ProjectReference Include="..\Erp.Vat\Erp.Vat.csproj" />
+  </ItemGroup>
+
+</Project>

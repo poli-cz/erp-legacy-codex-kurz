@@ -1,0 +1,12 @@
+﻿<Project>
+  <!-- Společné nastavení všech projektů. Legacy kód: bez nullable a bez implicitních usingů. -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS0618;CS1591</NoWarn>
+    <Company>Vzorová Firma s.r.o.</Company>
+    <Product>ERP (výukový výřez)</Product>
+  </PropertyGroup>
+</Project>

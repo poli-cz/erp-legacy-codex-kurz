@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="../src/Erp.Framework/Erp.Framework.csproj" />
+    <Project Path="../src/Erp.Payroll/Erp.Payroll.csproj" />
+    <Project Path="../src/Erp.Vat/Erp.Vat.csproj" />
+    <Project Path="../src/Erp.Data/Erp.Data.csproj" />
+  </Folder>
+  <Folder Name="/legacy-winforms/">
+    <Project Path="Erp.WinForms/Erp.WinForms.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="../tests/Erp.Tests/Erp.Tests.csproj" />
+  </Folder>
+</Solution>

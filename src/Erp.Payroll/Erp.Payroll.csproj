@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Erp.Payroll</RootNamespace>
+    <!-- StareKonstanty.cs je ve Windows-1250 bez BOM. Soubory bez BOM čte kompilátor v tomto
+         projektu jako Windows-1250, proto mají všechny ostatní .cs soubory UTF-8 s BOM.
+         Viz docs/KODOVANI.md. -->
+    <CodePage>1250</CodePage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Framework\Erp.Framework.csproj" />
+  </ItemGroup>
+
+</Project>
