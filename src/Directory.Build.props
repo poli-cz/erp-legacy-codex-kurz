@@ -1,0 +1,10 @@
+﻿<Project>
+  <PropertyGroup>
+    <NadrazenyBuildProps>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))</NadrazenyBuildProps>
+  </PropertyGroup>
+  <Import Project="$(NadrazenyBuildProps)" Condition="'$(NadrazenyBuildProps)' != ''" />
+  <PropertyGroup>
+    <!-- Jako .NET Framework 4.7: výchozí C# 7.3. Records, switch výrazy, file-scoped namespace = chyba buildu. -->
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+</Project>

@@ -19,7 +19,7 @@ jakémukoli agentovi.
 ## Začátek (Windows)
 
 ```powershell
-winget install Microsoft.DotNet.SDK.10      # jen pokud dotnet --version nehlásí 10.x
+winget install Microsoft.DotNet.SDK.10      # jen pokud dotnet --version nehlásí 10.x (chce admina)
 git clone https://github.com/poli-cz/erp-legacy-codex-kurz
 cd erp-legacy-codex-kurz
 dotnet --info                               # .NET SDK 10.x
@@ -27,8 +27,26 @@ dotnet test                                 # 9 testů, všechny zelené
 codex                                       # Codex spouštějte v adresáři repozitáře
 ```
 
-WinForms aplikace: `dotnet run --project legacy-winforms/Erp.WinForms` nebo otevřít
-`legacy-winforms/Erp.Windows.slnx` ve Visual Studiu.
+Bez práv administrátora nainstalujte .NET 10 SDK do profilu uživatele skriptem `dotnet-install.ps1`
+(místo `winget`):
+
+```powershell
+& ([scriptblock]::Create((irm https://dot.net/v1/dotnet-install.ps1))) -Channel 10.0 -InstallDir "$env:USERPROFILE\.dotnet"
+$env:PATH = "$env:USERPROFILE\.dotnet;$env:PATH"
+dotnet --version
+```
+
+`PATH` takto platí jen v aktuálním okně; natrvalo ho přidejte v nastavení proměnných prostředí
+uživatele.
+
+Visual Studio 2022 projekty .NET 10 neotevře, pracujte z příkazové řádky nebo ve VS 2026.
+
+### Před prvním spuštěním agenta
+
+Před prvním spuštěním agenta spusťte jednou `dotnet test` sami (restore z NuGetu). V sandboxu
+workspace-write je síť vypnutá. Pro tohle cvičné repo můžete použít profil
+s `[sandbox_workspace_write] network_access = true`, na vlastním kódu restore dělejte před
+spuštěním agenta.
 
 ## Začátek (macOS, Linux)
 
@@ -36,18 +54,40 @@ WinForms aplikace: `dotnet run --project legacy-winforms/Erp.WinForms` nebo otev
 Hlavní řešení `Erp.slnx` je multiplatformní. `legacy-winforms` jde na macOS a Linuxu přeložit,
 ale ne spustit.
 
+## C# 7.3 v `src`
+
+`src/Directory.Build.props` nastavuje pro produkční kód `LangVersion` 7.3, jako na .NET Frameworku 4.7.
+Records, switch výrazy nebo file-scoped namespace v `src` jsou chyba buildu. Testy v `tests/` píšete
+v moderním C#.
+
+## legacy-winforms
+
+`legacy-winforms/` je jeden formulář (`HlavniForm`) jako vzor pro vytažení logiky do presenteru:
+obsluha tlačítka sama skládá vstupy, volá výpočet a formátuje výsledek; cílem je nechat ve
+formuláři jen ovládací prvky a vazbu na presenter. Aplikace jde spustit
+jen na Windows: `dotnet run --project legacy-winforms/Erp.WinForms`. Do hlavního řešení `Erp.slnx`
+nepatří, má vlastní `legacy-winforms/Erp.Windows.slnx`.
+
+## Pro týmy na webu a .NET Frameworku
+
+WinForms část ignorujte. `src` je schválně C# 7.3. Doménové pasti (zaokrouhlení, pravidlo v C#
+i v proceduře, Windows-1250, parametry na více místech) jsou stejné.
+
 ## Mezi pokusy
 
-```
-git restore .
-git clean -fd
+Mezi pokusy: `git stash -u` nebo commit do vlastní větve; `git clean -fd` smaže i vaše poznámky
+(ZJISTENI.md, MAPA.md).
+
+```powershell
+git stash -u                      # odložit pokus i s novými soubory
+git switch -c pokus-b             # nebo pokus uložit do vlastní větve a commitnout
 ```
 
 ## Čím se liší od produkce
 
-Skutečný systém má miliony řádků, stovky procedur, DevExpress a vlastní testovací nástroj.
-Tady je zhruba 3 tisíce řádků, aby se agent i člověk zorientovali za pár minut. Pravidla mezd
-a DPH jsou zjednodušená (`docs/PARAMETRY-2026.md`), ale zvyklosti, pasti a duplicity jsou
+Skutečný systém má miliony řádků, stovky procedur, komerční knihovnu ovládacích prvků a vlastní
+testovací nástroj. Tady je zhruba 3 tisíce řádků, aby se agent i člověk zorientovali za pár minut.
+Pravidla mezd a DPH jsou zjednodušená (`docs/PARAMETRY-2026.md`), ale zvyklosti, pasti a duplicity jsou
 takové, jaké ve starém ERP bývají. Nejde o daňové poradenství.
 
 ## Týmy na TFVC (TFS bez Gitu)

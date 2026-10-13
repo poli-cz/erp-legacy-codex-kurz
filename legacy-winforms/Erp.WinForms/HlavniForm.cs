@@ -6,7 +6,7 @@ using Erp.Payroll;
 
 namespace Erp.WinForms
 {
-    /// <summary>Okno modelového výpočtu mzdy. V produkci DevExpress XtraForm s návrhářem.</summary>
+    /// <summary>Okno modelového výpočtu mzdy. V produkci formulář z komerční knihovny ovládacích prvků s návrhářem.</summary>
     public class HlavniForm : Form
     {
         private readonly NumericUpDown _hruba = new NumericUpDown { Maximum = 9999999, DecimalPlaces = 2, Value = 40000, Left = 140, Top = 12, Width = 120 };

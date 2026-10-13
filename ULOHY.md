@@ -1,7 +1,9 @@
 # Úlohy
 
 Build a testy: `dotnet build`, `dotnet test` (v kořeni repozitáře, řešení `Erp.slnx`).
-Mezi pokusy: `git restore .` a `git clean -fd`. Každou úlohu začněte v novém vlákně.
+`src` je schválně C# 7.3 (jako .NET Framework): modernější syntaxe v `src` = chyba buildu.
+Mezi pokusy: `git stash -u` nebo commit do vlastní větve; `git clean -fd` smaže i vaše poznámky
+(ZJISTENI.md, MAPA.md). Každou úlohu začněte v novém vlákně.
 
 ## A. Mapa repozitáře a AGENTS.md
 
@@ -21,9 +23,11 @@ Hotovo, když:
 Hotovo, když:
 - každý řádek CSV je jeden testovací případ a porovnávají se všechny výstupní sloupce,
 - testy procházejí proti současnému kódu a v `src/` se nic nezměnilo,
+- podezřelé řádky (podle `docs/PARAMETRY-2026.md`) jsou zapsané v `ZJISTENI.md` s číslem řádku CSV
+  a důvodem, test je přesto zelený,
 - `dotnet test` je zelený.
 
-## C. Strangler: nový výpočet vedle starého
+## C. Branch by Abstraction: nový výpočet vedle starého
 
 Vytvořte nový výpočet čisté mzdy `NetWageCalculator` za rozhraním. Přepínač v konfiguraci určí,
 který výpočet používá uzávěrka mezd. Paralelní běh spočítá oba výpočty a hlásí rozdíly.
@@ -33,6 +37,9 @@ Hotovo, když:
 - paralelní běh nad `golden/mzdy-2026.csv` vypíše řádky, ve kterých se výpočty liší, a v čem,
 - ke každému rozdílu umíte říct, jestli je chyba ve starém, nebo v novém výpočtu, a doložit to zdrojem,
 - `dotnet test` je zelený.
+
+Navazující krok (mimo úlohu): když paralelní běh delší dobu nehlásí rozdíly, přepínač se otočí
+a starý výpočet se postupně odstraní (strangler).
 
 ## D. Oprava pravidla testem napřed
 
@@ -82,3 +89,14 @@ Hotovo, když:
 - v `src/Erp.Vat` není žádné použití `ServiceRegistry`,
 - chování je beze změny a `dotnet test` je zelený,
 - máte Mikado graf (cíl a předpoklady) a každý list grafu je samostatný commit se zelenými testy.
+
+## P. Parametry 2027
+
+Od 1. 1. 2027 se mění minimální mzda a průměrná mzda. Výukové hodnoty pro tuto úlohu (nejsou
+skutečné): minimální mzda 23 500 Kč, průměrná mzda 51 000 Kč. Připravte změnu.
+
+Hotovo, když:
+- máte tabulku všech míst, kde parametr žije (C#, SQL, konstanty), a u každého soubor a řádek,
+- změna je ve všech místech, nebo je v závěru napsané, které místo jste vědomě nechali a proč,
+- existuje nový test s hodnotami 2027,
+- `dotnet test` je zelený.

@@ -2,8 +2,8 @@
 
 namespace Erp.Framework.Ui
 {
-    // Náhrady ovládacích prvků (v produkci DevExpress TextEdit, SpinEdit, CheckEdit, SimpleButton).
-    // Výukový výřez nesmí záviset na WinForms ani DevExpress, proto jen holá data.
+    // Náhrady ovládacích prvků (v produkci prvky komerční knihovny ovládacích prvků: textové pole, číselník, zaškrtávátko, tlačítko).
+    // Výukový výřez nesmí záviset na WinForms ani na komerční knihovně ovládacích prvků, proto jen holá data.
     // Generovaný kód (*.Designer.cs) je používá stejně, jako by šlo o skutečné prvky.
 
     public class ErpControl
@@ -62,7 +62,7 @@ namespace Erp.Framework.Ui
         }
     }
 
-    /// <summary>Základ formuláře. V produkci DevExpress XtraForm.</summary>
+    /// <summary>Základ formuláře. V produkci formulář z komerční knihovny ovládacích prvků.</summary>
     public class ErpForm
     {
         public string Name { get; set; }

@@ -61,5 +61,5 @@ přes `ServiceRegistry.Get<T>()`, často v bezparametrickém konstruktoru.
 ## Jak se liší od produkce
 
 Výřez nemá mzdové složky, nepřítomnosti, roční zúčtování ani exporty pro úřady. Reálný systém
-má miliony řádků, DevExpress, vlastní testovací nástroj a stovky procedur. Pravidla mezd a DPH jsou
-zjednodušená (viz `PARAMETRY-2026.md`), struktura a zvyklosti ale odpovídají běžnému legacy ERP.
+má miliony řádků, komerční knihovnu ovládacích prvků, vlastní testovací nástroj a stovky
+procedur. Pravidla mezd a DPH jsou zjednodušená (viz `PARAMETRY-2026.md`), struktura a zvyklosti ale odpovídají běžnému legacy ERP.
