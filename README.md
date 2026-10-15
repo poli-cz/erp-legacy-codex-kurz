@@ -15,6 +15,7 @@ jakémukoli agentovi.
 - `legacy-winforms/` – WinForms aplikace, jen Windows, mimo hlavní řešení
 - `tests/Erp.Tests` – pár testů (xUnit), `golden/mzdy-2026.csv` – výstupy starého systému
 - `docs/` – architektura, glosář, parametry 2026 se zdroji, kódování souborů
+- `prezentace/` – slidy 2. dne (tým Vario, PDF)
 
 ## Začátek (Windows)
 
